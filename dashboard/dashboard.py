@@ -45,7 +45,7 @@ max_date_days = all_df['dteday_x'].max()
 #Side bar
 with st.sidebar:
     #Menambahkan logo
-    st.image("image/logo.jpg")
+    st.image("https://img2.pngdownload.id/20171127/0ed/cyclist-silhouette-png-clip-art-image-5a1bf9e4edd614.1848116315117828849742.jpg")
 
     #Mengambil start date dan end date dari date input
     start_date, end_date = st.date_input(
