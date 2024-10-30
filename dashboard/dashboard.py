@@ -28,7 +28,7 @@ def create_daily_orders_df(df):
     return daily_orders_df
 
 #Load data
-all_df = pd.read_csv("all_df.csv")
+all_df = pd.read_csv("https://raw.githubusercontent.com/NajmahFemalea/bike-sharing/main/dashboard/all_df.csv")
 
 
 #Date column
@@ -100,6 +100,7 @@ with tab2:
     monthly_orders_df.reset_index(inplace=True)
     month_names = monthly_orders_df['mnth_x'].tolist()
     average_rentals = monthly_orders_df['cnt'].tolist()
+    
     # Membuat line chart dengan Matplotlib
     plt.figure(figsize=(10, 5))
     plt.plot(month_names, average_rentals, marker='o', linewidth=2, color="blue")
@@ -107,13 +108,14 @@ with tab2:
     plt.ylabel("Average Number of Daily Rentals")
     plt.title("Influence of Month on Daily Bicycle Rentals", loc="center")
     plt.xticks(rotation=45)  # Mengatur rotasi label bulan
-    plt.gca().set_xticklabels(['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], fontsize=10)
+    
+    # Menggunakan set_xticks() sebelum set_xticklabels()
+    plt.xticks(ticks=range(len(month_names)), labels=month_names, fontsize=10)  # Menggunakan month_names sebagai labels
     plt.yticks(fontsize=10)
     plt.grid(True)
 
     # Menampilkan grafik dalam aplikasi Streamlit
     st.pyplot(plt)
-
 
     with st.expander("Conlusion"):
         st.write('''Bulan yang paling banyak dan paling sedikit dilakukan penyewaan :
@@ -124,11 +126,12 @@ with tab3:
     season_names = ['Spring', 'Summer', 'Fall', 'Winter']
     season_counts = season_orders_df.values.ravel()
 
+    # Membuat bar chart untuk musim
     plt.figure(figsize=(10, 5))
     plt.bar(season_names, season_counts)
     plt.ylabel("Average Number of Daily Rentals")
     plt.xlabel("Season")
-    plt.title("Influence of Weather on Daily Bicycle Rentals", loc="center")
+    plt.title("Influence of Season on Daily Bicycle Rentals", loc="center")
 
     # Menampilkan grafik dalam aplikasi Streamlit
     st.pyplot(plt)
