@@ -64,9 +64,6 @@ daily_orders_df = create_daily_orders_df(main_df)
 
 st.header('Bike Sharing Dashboard :sparkles:')
 
-st.subheader('Raw Dataset all_df.csv')
-st.dataframe(data=all_df, width=500, height=300)
-
 #Questions
 st.subheader('Pertanyaan Bisnis?')
 st.write('''1. Apa pengaruh cuaca terhadap penyewaan sepeda?
